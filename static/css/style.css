@@ -230,6 +230,7 @@ main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
   padding: 8px 10px;
   font-size: 12px;
 }
+#btn-escanear-otra { margin-top: 16px; }
 
 /* ---------- Vista culturas ---------- */
 .titulo-culturas { text-align: center; font-size: 24px; margin: 10px 0 24px; }

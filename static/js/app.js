@@ -26,6 +26,7 @@ const overlayCargando = el('overlay-cargando');
 const textoCargando = el('texto-cargando');
 
 const tarjetaResultado = el('tarjeta-resultado');
+const btnEscanearOtra = el('btn-escanear-otra');
 const resultadoImagen = el('resultado-imagen');
 const resultadoCultura = el('resultado-cultura');
 const resultadoConfianza = el('resultado-confianza');
@@ -128,6 +129,12 @@ btnCamara.addEventListener('click', () => {
 });
 
 btnCerrarCamara.addEventListener('click', detenerCamara);
+
+btnEscanearOtra.addEventListener('click', () => {
+  tarjetaResultado.classList.add('oculto');
+  cajaPreview.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  iniciarCamara();
+});
 
 btnVoltear.addEventListener('click', async () => {
   facingMode = facingMode === 'environment' ? 'user' : 'environment';
