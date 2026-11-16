@@ -78,8 +78,8 @@ main { flex: 1 0 auto; }
   border: 1px solid var(--gris-borde);
 }
 .btn--chip.es-activo, .btn--chip:hover { border-color: var(--rojo); color: var(--rojo); }
-.header .btn--chip { background: transparent; color: var(--blanco); border-color: #444; }
-.header .btn--chip.es-activo, .header .btn--chip:hover { border-color: var(--rojo); color: var(--rojo); }
+.header .btn--chip { background: transparent; color: var(--blanco); border: none; padding: 6px 4px; }
+.header .btn--chip.es-activo, .header .btn--chip:hover { color: var(--rojo); }
 
 /* ---------- Layout general ---------- */
 main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
@@ -135,21 +135,6 @@ main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
 .hud--arriba-der { top: 8px; right: 8px; border-left: none; border-bottom: none; }
 .hud--abajo-izq { bottom: 8px; left: 8px; border-right: none; border-top: none; }
 .hud--abajo-der { bottom: 8px; right: 8px; border-left: none; border-top: none; }
-
-.linea-escaneo {
-  position: absolute;
-  left: 0; right: 0; top: 0;
-  height: 3px;
-  background: var(--rojo);
-  box-shadow: 0 0 12px var(--rojo);
-  z-index: 2;
-  animation: escanear 2.6s ease-in-out infinite;
-}
-@keyframes escanear {
-  0%   { transform: translateY(0); opacity: .85; }
-  50%  { transform: translateY(290px); opacity: 1; }
-  100% { transform: translateY(0); opacity: .85; }
-}
 
 .etiqueta-preview {
   position: absolute;
@@ -291,7 +276,6 @@ main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
   background: var(--blanco);
 }
 .pie p { margin: 0; display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; }
-.pie__linea { width: 16px; height: 1px; background: var(--rojo); display: inline-block; }
 
 @media (max-width: 640px) {
   .header h1 { font-size: 13px; }
