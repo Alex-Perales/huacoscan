@@ -273,3 +273,11 @@ document.querySelectorAll('.chip-categoria').forEach((chip) => {
     irACulturas(`cultura-${cultura}`);
   });
 });
+
+// ---------------- Culturas: abrir descripcion al click en la imagen ----------------
+document.querySelectorAll('.tarjeta-cultura__imagen').forEach((imagen) => {
+  imagen.addEventListener('click', () => {
+    const detalles = imagen.closest('.tarjeta-cultura').querySelector('details');
+    if (detalles) detalles.open = !detalles.open;
+  });
+});
