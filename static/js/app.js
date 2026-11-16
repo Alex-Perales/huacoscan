@@ -22,6 +22,8 @@ const imagenSubida = el('imagen-subida');
 const imagenDefault = el('imagen-default');
 const etiquetaPreview = el('etiqueta-preview');
 const canvasCaptura = el('canvas-captura');
+const overlayCargando = el('overlay-cargando');
+const textoCargando = el('texto-cargando');
 
 const tarjetaResultado = el('tarjeta-resultado');
 const resultadoImagen = el('resultado-imagen');
@@ -151,12 +153,14 @@ async function capturarFotoFinal() {
   mostrarImagenEstatica(dataUrl);
   btnSubir.disabled = true;
   btnCamara.disabled = true;
+  mostrarCargando();
   try {
     const resultado = await clasificar(dataUrl);
     renderizarResultado(dataUrl, resultado);
   } catch (err) {
-    mostrarErrorClasificacion();
+    mostrarErrorClasificacion(err.message === 'SIN_CONEXION' ? 'Sin conexion a internet. Revisa tu conexion e intenta de nuevo.' : undefined);
   } finally {
+    ocultarCargando();
     btnSubir.disabled = false;
     btnCamara.disabled = false;
   }
@@ -196,17 +200,28 @@ function procesarArchivo(archivo) {
     mostrarImagenEstatica(dataUrl);
     btnSubir.disabled = true;
     btnCamara.disabled = true;
+    mostrarCargando();
     try {
       const resultado = await clasificar(dataUrl);
       renderizarResultado(dataUrl, resultado);
     } catch (err) {
-      mostrarErrorClasificacion();
+      mostrarErrorClasificacion(err.message === 'SIN_CONEXION' ? 'Sin conexion a internet. Revisa tu conexion e intenta de nuevo.' : undefined);
     } finally {
+      ocultarCargando();
       btnSubir.disabled = false;
       btnCamara.disabled = false;
     }
   };
   lector.readAsDataURL(archivo);
+}
+
+function mostrarCargando() {
+  textoCargando.textContent = 'Procesando imagen...';
+  overlayCargando.classList.remove('oculto');
+}
+
+function ocultarCargando() {
+  overlayCargando.classList.add('oculto');
 }
 
 function mostrarImagenEstatica(dataUrl) {
@@ -219,11 +234,18 @@ function mostrarImagenEstatica(dataUrl) {
 
 // ---------------- Llamada al backend ----------------
 async function clasificar(dataUrl) {
-  const res = await fetch('/api/clasificar', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ imagen: dataUrl }),
-  });
+  if (!navigator.onLine) throw new Error('SIN_CONEXION');
+
+  let res;
+  try {
+    res = await fetch('/api/clasificar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imagen: dataUrl }),
+    });
+  } catch (err) {
+    throw new Error('SIN_CONEXION');
+  }
   if (!res.ok) throw new Error('Error al clasificar la imagen');
   return res.json();
 }
@@ -252,11 +274,11 @@ function renderizarResultado(dataUrl, resultado) {
   tarjetaResultado.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function mostrarErrorClasificacion() {
+function mostrarErrorClasificacion(mensaje) {
   tarjetaResultado.classList.remove('oculto');
   resultadoCultura.textContent = 'Error';
   resultadoConfianza.textContent = '';
-  resultadoDescripcion.textContent = 'No se pudo clasificar la imagen. Intenta de nuevo.';
+  resultadoDescripcion.textContent = mensaje || 'No se pudo clasificar la imagen. Intenta de nuevo.';
   resultadoRasgos.innerHTML = '';
 }
 

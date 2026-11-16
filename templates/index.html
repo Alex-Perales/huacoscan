@@ -65,6 +65,11 @@
             <img id="imagen-default" src="{{ url_for('static', filename='img/culturas/' + culturas['Nasca']['imagen']) }}" alt="Pieza de ejemplo">
 
             <div id="etiqueta-preview" class="etiqueta-preview">Ejemplo: Nasca</div>
+
+            <div id="overlay-cargando" class="overlay-cargando oculto">
+              <div class="spinner"></div>
+              <span id="texto-cargando">Procesando imagen...</span>
+            </div>
           </div>
         </div>
       </div>
