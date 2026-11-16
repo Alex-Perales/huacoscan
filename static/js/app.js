@@ -281,3 +281,11 @@ document.querySelectorAll('.tarjeta-cultura__imagen').forEach((imagen) => {
     if (detalles) detalles.open = !detalles.open;
   });
 });
+
+// ---------------- Culturas: texto "Leer mas" / "Leer menos" ----------------
+document.querySelectorAll('.tarjeta-cultura details').forEach((detalles) => {
+  const resumen = detalles.querySelector('summary');
+  detalles.addEventListener('toggle', () => {
+    resumen.textContent = detalles.open ? 'Leer menos' : 'Leer mas';
+  });
+});
