@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HuacoScan</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__contenido">
+      <div class="header__marca">
+        <span class="header__logo">&#9632;</span>
+        <h1><strong>HuacoScan</strong> <span class="header__subtitulo">Clasificador de Ceramica Precolombina</span></h1>
+      </div>
+      <nav>
+        <button id="btn-ir-clasificador" class="btn btn--chip es-activo">Clasificador</button>
+        <button id="btn-ir-culturas" class="btn btn--chip">Conoce las culturas</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== VISTA: CLASIFICADOR ==================== -->
+    <section id="vista-clasificador" class="vista">
+
+      <div class="tarjeta tarjeta-upload">
+        <div class="columna columna-controles">
+          <h2>Sube una imagen para <span class="resaltado">identificar su cultura</span></h2>
+          <p class="subtitulo">Descubre el origen de esta pieza de ceramica precolombina</p>
+
+          <input type="file" id="input-archivo" accept="image/*" hidden>
+
+          <div class="fila-botones">
+            <button id="btn-subir" class="btn btn--primario">
+              <span class="icono">&#8593;</span> Subir imagen
+            </button>
+            <button id="btn-camara" class="btn btn--primario">
+              <span class="icono">&#9679;</span> <span id="texto-btn-camara">Usar camara</span>
+            </button>
+          </div>
+
+          <div id="controles-camara" class="fila-botones fila-botones--secundaria oculto">
+            <button id="btn-voltear" class="btn btn--chip">&#8635; Voltear</button>
+            <button id="btn-cerrar-camara" class="btn btn--oscuro">&#10005; Cerrar camara</button>
+          </div>
+
+          <p id="error-camara" class="error-camara oculto"></p>
+
+          <div class="separador"><span></span>o arrastra una imagen aqui<span></span></div>
+        </div>
+
+        <div class="linea-vertical"></div>
+
+        <div class="columna columna-preview">
+          <div id="caja-preview" class="caja-preview">
+            <div class="hud hud--arriba-izq"></div>
+            <div class="hud hud--arriba-der"></div>
+            <div class="hud hud--abajo-izq"></div>
+            <div class="hud hud--abajo-der"></div>
+            <div class="linea-escaneo"></div>
+
+            <video id="video" autoplay playsinline muted class="oculto"></video>
+            <img id="imagen-subida" class="oculto" alt="Pieza subida">
+            <img id="imagen-default" src="{{ url_for('static', filename='img/culturas/' + culturas['Nasca']['imagen']) }}" alt="Pieza de ejemplo">
+
+            <div id="caja-deteccion" class="caja-deteccion oculto">
+              <span id="etiqueta-deteccion" class="caja-deteccion__etiqueta"></span>
+            </div>
+
+            <div id="etiqueta-preview" class="etiqueta-preview">Ejemplo: Nasca</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="categorias">
+        <span class="categorias__titulo">Categorias</span>
+        <div class="categorias__lista">
+          {% for clave in clases %}
+          <button class="chip-categoria" data-cultura="{{ clave }}">{{ etiquetas[clave] }}</button>
+          {% endfor %}
+          <button class="chip-categoria chip-categoria--otro" data-cultura="Otro">Otro</button>
+        </div>
+      </div>
+
+      <div id="tarjeta-resultado" class="tarjeta tarjeta-resultado oculto">
+        <div class="resultado__imagen">
+          <img id="resultado-imagen" alt="">
+        </div>
+        <div class="resultado__info">
+          <span class="resultado__etiqueta-chica">Cultura detectada</span>
+          <h2 id="resultado-cultura">-</h2>
+          <p id="resultado-confianza" class="resultado__confianza"></p>
+          <p id="resultado-descripcion"></p>
+          <div id="resultado-rasgos" class="resultado__rasgos"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA: CULTURAS ==================== -->
+    <section id="vista-culturas" class="vista oculto">
+      <h2 class="titulo-culturas">Culturas Precolombinas del <span class="resaltado">Antiguo Peru</span></h2>
+
+      <div class="grid-culturas">
+        {% for clave in clases %}
+        {% set c = culturas[clave] %}
+        <article class="tarjeta-cultura" id="cultura-{{ clave }}">
+          <div class="tarjeta-cultura__imagen">
+            <img src="{{ url_for('static', filename='img/culturas/' + c.imagen) }}" alt="{{ c.nombre }}">
+            <span class="tarjeta-cultura__chip">{{ etiquetas[clave] }}</span>
+          </div>
+          <h3>{{ c.nombre }}</h3>
+          <p class="tarjeta-cultura__meta"><strong>Periodo:</strong> {{ c.cronologia }} ({{ c.periodo }})</p>
+          <p class="tarjeta-cultura__meta"><strong>Region:</strong> {{ c.region }}</p>
+          <p>{{ c.resumen }}</p>
+          <details>
+            <summary>Leer mas</summary>
+            <p>{{ c.historia }}</p>
+            <ul>
+              {% for rasgo in c.rasgos %}
+              <li>{{ rasgo }}</li>
+              {% endfor %}
+            </ul>
+            <p class="tarjeta-cultura__meta"><strong>Museos:</strong> {{ c.museo }}</p>
+          </details>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>
+      <span>HuacoScan</span>
+      <span class="pie__linea"></span>
+      <span>Proyecto de Computacion Grafica</span>
+      <span class="pie__linea"></span>
+      <span>Clasificacion de ceramica precolombina peruana</span>
+    </p>
+  </footer>
+
+  <canvas id="canvas-captura" hidden></canvas>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+{
+  "Nasca": {
+    "nombre": "Cultura Nasca",
+    "cronologia": "100 a.C. – 800 d.C.",
+    "periodo": "Intermedio Temprano",
+    "region": "Costa sur del Perú (Valles de Nazca, Palpa, Ingenio e Ica)",
+    "resumen": "Célebre por sus gigantescos geoglifos y por su cerámica policéroma, la más vistosa de la América precolombina, con la técnica del \"horror al vacío\": hasta 16 colores minerales precocción cubriendo toda la superficie.",
+    "historia": "La civilización Nasca floreció en una de las zonas más áridas del planeta. Desarrollaron una red de acueductos subterráneos (puquios) que aún funcionan hoy. Cahuachi fue su gran centro ceremonial. Su alfarería retrata seres míticos alados, felinos voladores y aves marinas.",
+    "rasgos": [
+      "Doble pico divergente unido por asa puente cilíndrica",
+      "Paleta policéroma precocción (hasta 16 colores minerales)",
+      "Técnica del horror al vacío: superficie totalmente decorada",
+      "Acabado bruñido de brillo cristalino"
+    ],
+    "museo": "Museo Larco (Lima), Museo Regional de Ica",
+    "imagen": "nasca.webp"
+  },
+  "Mochica": {
+    "nombre": "Cultura Mochica (Moche)",
+    "cronologia": "100 d.C. – 700 d.C.",
+    "periodo": "Intermedio Temprano",
+    "region": "Costa norte del Perú (Valles de Moche, Chicama, Lambayeque y Virú)",
+    "resumen": "Los escultores alfareros más virtuosos de América precolombina. Sus Huacos Retrato plasman con realismo anatómico a dignatarios, estados de ánimo y ceremonias míticas.",
+    "historia": "Confederación de reinos costeros que dominó los valles del norte con canales de irrigación. Construyeron huacas piramidales como la Huaca del Sol y de la Luna. Gobernantes como el Señor de Sipán realizaban ceremonias de combate ritual y sacrificios en honor a Ai Apaec.",
+    "rasgos": [
+      "Huacos retratos hiperrealistas con expresiones anímicas",
+      "Asa estribo tubular clásica con pico recto",
+      "Bicromía en engobe crema marfil y rojo ocre",
+      "Escenas de combate ritual y divinidad Ai Apaec"
+    ],
+    "museo": "Museo Tumbas Reales de Sipán, Museo Larco (Lima)",
+    "imagen": "mochica.webp"
+  },
+  "Chimu": {
+    "nombre": "Cultura Chimú (Reino de Chimor)",
+    "cronologia": "900 d.C. – 1470 d.C.",
+    "periodo": "Intermedio Tardío",
+    "region": "Costa norte del Perú (Chan Chan, Valle de Moche)",
+    "resumen": "El imperio costero más poderoso antes de los Incas. Edificaron Chan Chan, la ciudad de barro más grande del continente. Su cerámica se distingue por su tono negro azabache de brillo metálico.",
+    "historia": "Tras el declive de Huari y Moche, surgió la dinastía de Chimor. Conquistaron más de mil kilómetros de litoral. Destacaron en metalurgia y en producción alfarera masiva mediante moldes bivalvos con cocción reductora sin oxígeno.",
+    "rasgos": [
+      "Superficie negra azabache con lustre metálico",
+      "Pequeña figura zoomorfa en la unión del asa estribo",
+      "Huacos silbadores de doble cuerpo",
+      "Decoración estampada con motivos marinos"
+    ],
+    "museo": "Museo de Sitio de Chan Chan, Museo Larco (Lima)",
+    "imagen": "chimu.webp"
+  },
+  "Chancay": {
+    "nombre": "Cultura Chancay",
+    "cronologia": "1200 d.C. – 1470 d.C.",
+    "periodo": "Intermedio Tardío",
+    "region": "Costa central del Perú (Valles de Chancay, Chillón y Rímac)",
+    "resumen": "Civilización marítima y agrícola conocida por sus figuras antropomorfas \"Cuchimilcos\" y su cerámica \"Negro sobre Blanco\" de textura porosa.",
+    "historia": "Se desarrolló en la costa central con una economía marítima intensiva. En sus cementerios del desierto se hallaron momias envueltas en fardos funerarios junto a figuras de barro con brazos abiertos (Cuchimilcos), guardianes espirituales.",
+    "rasgos": [
+      "Estilo \"Negro sobre Blanco\" con fondo crema mate",
+      "Cuchimilcos antropomorfos con brazos abiertos",
+      "Superficie rugosa y porosa al tacto",
+      "Cántaros efigie con rostro modelado en el cuello"
+    ],
+    "museo": "Museo Arqueológico de Chancay, Museo Amano (Lima)",
+    "imagen": "chancay.webp"
+  },
+  "Lambayeque": {
+    "nombre": "Cultura Lambayeque (Sicán)",
+    "cronologia": "750 d.C. – 1375 d.C.",
+    "periodo": "Horizonte Medio a Intermedio Tardío",
+    "region": "Costa norte del Perú (Valles de La Leche, Lambayeque y Reque)",
+    "resumen": "Famosa por su orfebrería de oro y por sus botellas ceremoniales con base cónica y el rostro del dios mítico Naymlap.",
+    "historia": "Según la leyenda, el héroe Naymlap llegó por mar y fundó esta civilización. Sus descendientes edificaron urbes piramidales como Batán Grande y Túcume. Su arte sintetizó las tradiciones Moche y Huari con el sello de ojos alados.",
+    "rasgos": [
+      "Base cónica o pedestal campaniforme truncado",
+      "Rostro del dios Naymlap con ojos alados",
+      "Coloración gris oscura o negro ahumado",
+      "Botellas de dos picos unidos por asa puente"
+    ],
+    "museo": "Museo Nacional Sicán (Ferreñafe), Museo Brüning",
+    "imagen": "lambayeque.webp"
+  },
+  "Huari_Norteno": {
+    "nombre": "Cultura Huari (Estilo Norteño)",
+    "cronologia": "600 d.C. – 1000 d.C.",
+    "periodo": "Horizonte Medio",
+    "region": "Ayacucho (centro imperial) con enclaves norteños (San José de Moro, Virú)",
+    "resumen": "El primer imperio expansionista de los Andes centrales. Su cerámica imperial norteña combina la robustez Huari con la maestría iconográfica costeña.",
+    "historia": "Huari surgió en Ayacucho combinando influencias Nasca y Tiahuanaco. Expandió su control mediante centros administrativos amurallados y una red vial precursora del Qhapaq Ñan.",
+    "rasgos": [
+      "Cántaros de cuello efigie antropomorfa y felínica",
+      "Ojos partidos bicolores",
+      "Grecas escalonadas y bandas de chevrons",
+      "Pastas muy finas y densas"
+    ],
+    "museo": "Museo de Sitio Huaca Pucllana, Museo Hipólito Unanue (Ayacucho)",
+    "imagen": "huari_norteno.webp"
+  },
+  "Inca": {
+    "nombre": "Cultura Inca (Tahuantinsuyo)",
+    "cronologia": "1438 d.C. – 1533 d.C.",
+    "periodo": "Horizonte Tardío",
+    "region": "Cusco, expandido por todos los Andes",
+    "resumen": "El mayor estado de la América precolombina. Su alfarería se distingue por la sobriedad geométrica, con el Aríbalo (urpu) como forma insignia.",
+    "historia": "Bajo Pachacútec, la expansión incaica integró a decenas de etnias con un sistema basado en la reciprocidad. Crearon el Qhapaq Ñan, red vial de más de 30,000 km, y terrazas de cultivo en los Andes.",
+    "rasgos": [
+      "Aríbalo (urpu): cuerpo globular y base cónica",
+      "Botón zoomorfo en la parte superior",
+      "Diseños geométricos estandarizados (tocapus)",
+      "Engobe rojo ladrillo, naranja, negro y crema"
+    ],
+    "museo": "Museo Inka (Cusco), Museo Larco (Lima)",
+    "imagen": "inca.webp"
+  }
+}
