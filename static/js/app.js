@@ -282,10 +282,9 @@ document.querySelectorAll('.tarjeta-cultura__imagen').forEach((imagen) => {
   });
 });
 
-// ---------------- Culturas: texto "Leer mas" / "Leer menos" ----------------
-document.querySelectorAll('.tarjeta-cultura details').forEach((detalles) => {
-  const resumen = detalles.querySelector('summary');
-  detalles.addEventListener('toggle', () => {
-    resumen.textContent = detalles.open ? 'Leer menos' : 'Leer mas';
+// ---------------- Culturas: boton "Leer menos" al final ----------------
+document.querySelectorAll('.tarjeta-cultura .toggle-cerrar').forEach((boton) => {
+  boton.addEventListener('click', () => {
+    boton.closest('details').open = false;
   });
 });

@@ -206,12 +206,16 @@ main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
 
 /* ---------- Vista culturas ---------- */
 .titulo-culturas { text-align: center; font-size: 24px; margin: 10px 0 24px; }
-.grid-culturas { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; align-items: start; }
+.grid-culturas { columns: 3 280px; column-gap: 18px; }
 .tarjeta-cultura {
   background: var(--blanco);
   border: 1px solid var(--gris-borde);
   border-radius: 18px;
   padding: 18px;
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: 18px;
 }
 .tarjeta-cultura:hover { border-color: var(--rojo); }
 .tarjeta-cultura__imagen {
@@ -240,8 +244,21 @@ main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
 .tarjeta-cultura p { font-size: 13px; line-height: 1.5; color: #333; }
 .tarjeta-cultura details { margin-top: 8px; font-size: 13px; }
 .tarjeta-cultura summary { color: var(--rojo); font-weight: 700; cursor: pointer; }
+.tarjeta-cultura details[open] > summary { display: none; }
 .tarjeta-cultura ul { padding-left: 18px; margin: 8px 0; }
 .tarjeta-cultura li { margin-bottom: 4px; }
+.tarjeta-cultura .toggle-cerrar {
+  display: none;
+  color: var(--rojo);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 10px;
+}
+.tarjeta-cultura details[open] .toggle-cerrar { display: inline-block; }
 
 /* ---------- Pie ---------- */
 .pie {
