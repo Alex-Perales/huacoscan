@@ -1,4 +1,4 @@
-# HuacoScan &mdash; Clasificador de Culturas Precolombinas
+# ColibriScan &mdash; Clasificador de Culturas Precolombinas
 
 Pagina web (Flask + HTML/CSS/JS, sin frameworks pesados) que clasifica ceramica
 precolombina peruana en 7 culturas (Chancay, Chimu, Huari Norteno, Inca,
