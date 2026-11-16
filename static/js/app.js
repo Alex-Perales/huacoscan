@@ -1,7 +1,5 @@
 // Clasificador de Culturas Precolombinas - logica de interfaz (subida, camara, resultado)
 
-const UMBRAL_INTERVALO_CAMARA_MS = 1200;
-
 const el = (id) => document.getElementById(id);
 
 const vistaClasificador = el('vista-clasificador');
@@ -23,8 +21,6 @@ const video = el('video');
 const imagenSubida = el('imagen-subida');
 const imagenDefault = el('imagen-default');
 const etiquetaPreview = el('etiqueta-preview');
-const cajaDeteccion = el('caja-deteccion');
-const etiquetaDeteccion = el('etiqueta-deteccion');
 const canvasCaptura = el('canvas-captura');
 
 const tarjetaResultado = el('tarjeta-resultado');
@@ -37,7 +33,6 @@ const resultadoRasgos = el('resultado-rasgos');
 let stream = null;
 let isCameraActive = false;
 let facingMode = 'environment';
-let intervaloEnVivo = null;
 
 // El recuadro de deteccion se calcula en % sobre el frame nativo (video.videoWidth
 // x videoHeight). Si el contenedor se queda con su aspect-ratio fijo (4:3) y el
@@ -95,9 +90,6 @@ async function iniciarCamara() {
 
     textoBtnCamara.textContent = 'Capturar foto';
     controlesCamara.classList.remove('oculto');
-
-    if (intervaloEnVivo) clearInterval(intervaloEnVivo);
-    intervaloEnVivo = setInterval(clasificarFrameEnVivo, UMBRAL_INTERVALO_CAMARA_MS);
   } catch (err) {
     console.warn('No se pudo acceder a la camara:', err);
     errorCamara.textContent = 'No se pudo acceder a la camara. Revisa los permisos del navegador.';
@@ -114,14 +106,9 @@ function detenerStream() {
 }
 
 function detenerCamara() {
-  if (intervaloEnVivo) {
-    clearInterval(intervaloEnVivo);
-    intervaloEnVivo = null;
-  }
   detenerStream();
   isCameraActive = false;
   video.classList.add('oculto');
-  cajaDeteccion.classList.add('oculto');
   controlesCamara.classList.add('oculto');
   textoBtnCamara.textContent = 'Usar camara';
   if (imagenSubida.classList.contains('oculto')) {
@@ -158,18 +145,6 @@ function capturarFrameComoDataURL() {
   return canvasCaptura.toDataURL('image/jpeg', 0.88);
 }
 
-async function clasificarFrameEnVivo() {
-  if (!isCameraActive) return;
-  const dataUrl = capturarFrameComoDataURL();
-  try {
-    const resultado = await clasificar(dataUrl);
-    dibujarCajaDeteccion(resultado);
-  } catch (err) {
-    // Frame suelto que falla no debe interrumpir el escaneo en vivo
-    console.warn('Error clasificando frame en vivo:', err);
-  }
-}
-
 async function capturarFotoFinal() {
   const dataUrl = capturarFrameComoDataURL();
   detenerCamara();
@@ -178,7 +153,6 @@ async function capturarFotoFinal() {
   btnCamara.disabled = true;
   try {
     const resultado = await clasificar(dataUrl);
-    dibujarCajaDeteccion(resultado);
     renderizarResultado(dataUrl, resultado);
   } catch (err) {
     mostrarErrorClasificacion();
@@ -224,7 +198,6 @@ function procesarArchivo(archivo) {
     btnCamara.disabled = true;
     try {
       const resultado = await clasificar(dataUrl);
-      dibujarCajaDeteccion(resultado);
       renderizarResultado(dataUrl, resultado);
     } catch (err) {
       mostrarErrorClasificacion();
@@ -253,28 +226,6 @@ async function clasificar(dataUrl) {
   });
   if (!res.ok) throw new Error('Error al clasificar la imagen');
   return res.json();
-}
-
-// ---------------- Recuadro de deteccion ----------------
-function dibujarCajaDeteccion(resultado) {
-  if (!resultado || resultado.fraccion_pieza === undefined || resultado.fraccion_pieza < 0.02) {
-    cajaDeteccion.classList.add('oculto');
-    return;
-  }
-  const { x, y, w, h } = resultado.bbox;
-  cajaDeteccion.style.left = `${x * 100}%`;
-  cajaDeteccion.style.top = `${y * 100}%`;
-  cajaDeteccion.style.width = `${w * 100}%`;
-  cajaDeteccion.style.height = `${h * 100}%`;
-
-  if (resultado.es_otro || !resultado.cultura) {
-    cajaDeteccion.classList.add('caja-deteccion--baja');
-    etiquetaDeteccion.textContent = 'Cul: Otro';
-  } else {
-    cajaDeteccion.classList.remove('caja-deteccion--baja');
-    etiquetaDeteccion.textContent = `Cul: ${resultado.etiqueta}`;
-  }
-  cajaDeteccion.classList.remove('oculto');
 }
 
 // ---------------- Tarjeta de resultado ----------------
